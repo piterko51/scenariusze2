@@ -46,8 +46,10 @@ namespace Scenariusze {
 	private: System::Windows::Forms::Button^  bWybierzSztuke;
 	private: System::Windows::Forms::Button^  bDodajScenariusz;
 	private: System::Windows::Forms::Button^  bDodajScenariusz2;
+
+
 	private: System::Windows::Forms::Button^  bZapiszScenariusz;
-	private: System::Windows::Forms::TextBox^  tekst;
+
 	public: System::Windows::Forms::ListBox^  listaScenariuszy;
 	private:
 
@@ -55,6 +57,8 @@ namespace Scenariusze {
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
 
 	private: System::Windows::Forms::Button^  bNuda;
+	private: System::Windows::Forms::RichTextBox^  tekst;
+
 
 
 
@@ -77,11 +81,11 @@ namespace Scenariusze {
 			this->bDodajScenariusz = (gcnew System::Windows::Forms::Button());
 			this->bDodajScenariusz2 = (gcnew System::Windows::Forms::Button());
 			this->bZapiszScenariusz = (gcnew System::Windows::Forms::Button());
-			this->tekst = (gcnew System::Windows::Forms::TextBox());
 			this->listaScenariuszy = (gcnew System::Windows::Forms::ListBox());
 			this->bPowrot = (gcnew System::Windows::Forms::Button());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->bNuda = (gcnew System::Windows::Forms::Button());
+			this->tekst = (gcnew System::Windows::Forms::RichTextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->zdjecietlo))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -122,11 +126,11 @@ namespace Scenariusze {
 			// 
 			this->bDodajScenariusz2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(238)));
-			this->bDodajScenariusz2->Location = System::Drawing::Point(697, 465);
+			this->bDodajScenariusz2->Location = System::Drawing::Point(689, 465);
 			this->bDodajScenariusz2->Name = L"bDodajScenariusz2";
-			this->bDodajScenariusz2->Size = System::Drawing::Size(175, 37);
+			this->bDodajScenariusz2->Size = System::Drawing::Size(183, 37);
 			this->bDodajScenariusz2->TabIndex = 3;
-			this->bDodajScenariusz2->Text = L"Dodaj Scenariusz";
+			this->bDodajScenariusz2->Text = L"Wczytaj Scenariusz";
 			this->bDodajScenariusz2->UseVisualStyleBackColor = true;
 			this->bDodajScenariusz2->Visible = false;
 			this->bDodajScenariusz2->Click += gcnew System::EventHandler(this, &Form1::bDodajScenariusz2_Click);
@@ -135,25 +139,14 @@ namespace Scenariusze {
 			// 
 			this->bZapiszScenariusz->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(238)));
-			this->bZapiszScenariusz->Location = System::Drawing::Point(697, 508);
+			this->bZapiszScenariusz->Location = System::Drawing::Point(689, 508);
 			this->bZapiszScenariusz->Name = L"bZapiszScenariusz";
-			this->bZapiszScenariusz->Size = System::Drawing::Size(175, 37);
+			this->bZapiszScenariusz->Size = System::Drawing::Size(183, 37);
 			this->bZapiszScenariusz->TabIndex = 4;
-			this->bZapiszScenariusz->Text = L"Zapisz Scenariusz";
+			this->bZapiszScenariusz->Text = L"Dodaj Scenariusz";
 			this->bZapiszScenariusz->UseVisualStyleBackColor = true;
 			this->bZapiszScenariusz->Visible = false;
 			this->bZapiszScenariusz->Click += gcnew System::EventHandler(this, &Form1::bZapiszScenariusz_Click);
-			// 
-			// tekst
-			// 
-			this->tekst->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(238)));
-			this->tekst->Location = System::Drawing::Point(12, 12);
-			this->tekst->Multiline = true;
-			this->tekst->Name = L"tekst";
-			this->tekst->Size = System::Drawing::Size(679, 537);
-			this->tekst->TabIndex = 5;
-			this->tekst->Visible = false;
 			// 
 			// listaScenariuszy
 			// 
@@ -173,9 +166,9 @@ namespace Scenariusze {
 			// 
 			this->bPowrot->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
-			this->bPowrot->Location = System::Drawing::Point(697, 12);
+			this->bPowrot->Location = System::Drawing::Point(689, 12);
 			this->bPowrot->Name = L"bPowrot";
-			this->bPowrot->Size = System::Drawing::Size(175, 37);
+			this->bPowrot->Size = System::Drawing::Size(183, 37);
 			this->bPowrot->TabIndex = 7;
 			this->bPowrot->Text = L"Powrót";
 			this->bPowrot->UseVisualStyleBackColor = true;
@@ -199,6 +192,14 @@ namespace Scenariusze {
 			this->bNuda->UseVisualStyleBackColor = true;
 			this->bNuda->Click += gcnew System::EventHandler(this, &Form1::bNuda_Click);
 			// 
+			// tekst
+			// 
+			this->tekst->Location = System::Drawing::Point(12, 12);
+			this->tekst->Name = L"tekst";
+			this->tekst->Size = System::Drawing::Size(671, 537);
+			this->tekst->TabIndex = 9;
+			this->tekst->Text = L"";
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -214,12 +215,15 @@ namespace Scenariusze {
 			this->Controls->Add(this->listaScenariuszy);
 			this->Controls->Add(this->tekst);
 			this->MaximizeBox = false;
+			this->MaximumSize = System::Drawing::Size(900, 600);
+			this->MinimumSize = System::Drawing::Size(900, 600);
 			this->Name = L"Form1";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Coœ i Coœtam";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Form1::Form1_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->zdjecietlo))->EndInit();
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -268,44 +272,46 @@ private: System::Void bPowrot_Click(System::Object^  sender, System::EventArgs^ 
 			 this->listaScenariuszy->Visible=false;
 			 this->tekst->Visible=false;		 
 		 }
-private: System::Void bDodajScenariusz2_Click(System::Object^  sender, System::EventArgs^  e) {
-		
-			 OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog;
+	private: System::Void bDodajScenariusz2_Click(System::Object^  sender, System::EventArgs^  e) {
 
-      openFileDialog1->InitialDirectory = "c:\\";
-      openFileDialog1->Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-      openFileDialog1->FilterIndex = 1;
-      openFileDialog1->RestoreDirectory = true;
+		OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog;
 
-      if ( openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK )
-	  {  this->tekst->Text = File::ReadAllText(openFileDialog1->FileName);
-	  //sposób na odczyt i dodanie 1 linii z pliku test.txt
-	   //auto reader = gcnew StreamReader(File::OpenRead("test.txt"));
-	   //this->listaScenariuszy->Items -> Add(reader->ReadLine());
-	   //this->tekst->AppendText(reader->ReadLine());
-	  //reader->Close();
-      }
-		 }
+		openFileDialog1->InitialDirectory = "Ten Komputer\\Pulpit";
+		openFileDialog1->Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+		openFileDialog1->FilterIndex = 1;
+		openFileDialog1->RestoreDirectory = true;
+
+		if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+			{
+				tekst->LoadFile(openFileDialog1->FileName, RichTextBoxStreamType::PlainText);
+			}
+	
+	}
 
 
 
 private: System::Void bZapiszScenariusz_Click(System::Object^  sender, System::EventArgs^  e) {
-	String^ pierwszalinia;
-		array<String^>^ lines = tekst->Lines;
-	int count = lines->Length;
-	pierwszalinia = lines[0];
-	StreamWriter^ sw = gcnew StreamWriter(pierwszalinia+".txt");
-	for (int idx =0; idx < count; ++idx)
+	if (MessageBox::Show("Czy chcesz dodaæ scenariusz?", "My Application", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
+
 	{
-		sw->WriteLine(lines[idx]);
-		if (idx == 0) {
-			StreamWriter^ tyt = gcnew StreamWriter("tytuly.txt", true);
-			tyt->WriteLine(lines[idx]);
-			tyt ->Close();
+		String^ pierwszalinia;
+		array<String^>^ lines = tekst->Lines;
+		int count = lines->Length;
+		pierwszalinia = lines[0];
+		StreamWriter^ sw = gcnew StreamWriter(pierwszalinia + ".txt");
+		for (int idx = 0; idx < count; ++idx)
+		{
+			sw->WriteLine(lines[idx]);
+			if (idx == 0) {
+				StreamWriter^ tyt = gcnew StreamWriter("tytuly.txt", true);
+				tyt->WriteLine(lines[idx]);
+				tyt->Close();
+				MessageBox::Show("Scenariusz dodany pomyœlnie!", "STATUS INDICATION");
+			}
 		}
+		sw->Close();
 	}
-	sw->Close();
-		 }
+	}
 	 
 private: System::Void openFileDialog1_FileOk(System::Object^  sender, System::ComponentModel::CancelEventArgs^  e) {
 		 }
@@ -319,6 +325,13 @@ private: System::Void listaScenariuszy_MouseDoubleClick(System::Object^  sender,
 	
 	MyForm^ f3 = gcnew MyForm();
 	f3->ShowDialog();
+}
+private: System::Void Form1_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+	if (MessageBox::Show(L"Czy na pewno chcesz opuœciæ program?", L"Wyjœcie", MessageBoxButtons::YesNo,
+		MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::No)
+	{
+		e->Cancel = true;
+	}
 }
 };
 }

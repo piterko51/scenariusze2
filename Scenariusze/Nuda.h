@@ -67,16 +67,16 @@ namespace Scenariusze {
 			this->fake2 = (gcnew System::Windows::Forms::PictureBox());
 			this->fake3 = (gcnew System::Windows::Forms::PictureBox());
 			this->fake4 = (gcnew System::Windows::Forms::PictureBox());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->fake1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->fake2))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->fake3))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->fake4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fake1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fake2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fake3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fake4))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(150, 119);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(100, 100);
@@ -89,7 +89,7 @@ namespace Scenariusze {
 			// 
 			// bWybierzPokemona
 			// 
-			this->bWybierzPokemona->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21.75F, System::Drawing::FontStyle::Regular, 
+			this->bWybierzPokemona->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(238)));
 			this->bWybierzPokemona->Location = System::Drawing::Point(45, 274);
 			this->bWybierzPokemona->Name = L"bWybierzPokemona";
@@ -156,39 +156,51 @@ namespace Scenariusze {
 			this->Controls->Add(this->fake3);
 			this->Controls->Add(this->fake2);
 			this->MaximizeBox = false;
+			this->MaximumSize = System::Drawing::Size(400, 400);
+			this->MinimumSize = System::Drawing::Size(400, 400);
 			this->Name = L"Nuda";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Nuda";
 			this->Load += gcnew System::EventHandler(this, &Nuda::Nuda_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->fake1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->fake2))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->fake3))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->fake4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fake1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fake2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fake3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fake4))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	private: System::Void Nuda_Load(System::Object^  sender, System::EventArgs^  e) {
 			 this->pictureBox1->Location = Point(12,12);
-			 	 this->bWybierzPokemona->Visible=true;
+			 this->pictureBox1->Visible=false;
+			 this->bWybierzPokemona->Visible=true;
 			 } 
+
 	private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
 			 }
 	private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
 			 }
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-				 this->bWybierzPokemona->Visible=false;
-				 
-				 OpenFileDialog^ openFDnuda = gcnew OpenFileDialog;
 
-       openFDnuda->InitialDirectory = "c:\\";
-	   openFDnuda->Filter = "Obraz JPEG (.jpg)|*.jpg|All files (*.*)|*.*";
-       openFDnuda->FilterIndex = 1;
-       openFDnuda->RestoreDirectory = true;
+		OpenFileDialog^ openFDnuda = gcnew OpenFileDialog;
 
-      if (  openFDnuda->ShowDialog() == System::Windows::Forms::DialogResult::OK )
-	  {  this->pictureBox1->Image = System::Drawing::Image::FromFile( openFDnuda->FileName);}
+		openFDnuda->InitialDirectory = "c:\\Users\\Piotr\\Documents\\Visual Studio 2010\\Projects\\Scenariusze2\\Scenariusze\\Pokemony ";
+		openFDnuda->Filter = "Obraz JPEG (.jpg)|*.jpg|All files (*.*)|*.*";
+		openFDnuda->FilterIndex = 1;
+		openFDnuda->RestoreDirectory = true;
+		try {
 
+			if (openFDnuda->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+			{
+				this->pictureBox1->Image = System::Drawing::Image::FromFile(openFDnuda->FileName);
+				this->bWybierzPokemona->Visible = false;
+				this->pictureBox1->Visible = true;
+			}
+		}
+		catch (...) {
+			MessageBox::Show("B³¹d dodawania zdjêcia.", "STATUS INDICATION");
+		}
 			 }
 	private: System::Void pictureBox1_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 			 }
